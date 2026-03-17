@@ -9,19 +9,32 @@ export default function App() {
   const [members, setMembers] = useState<Member[]>([])
 
   async function load() {
-    const data = await getMembers()
+    const data = await getMembers();
     setMembers(data)
   }
 
   useEffect(() => {
-    load()
+    let mounted = true;
+
+    async function init() {
+      const data = await getMembers()
+      if (mounted) {
+        setMembers(data) 
+      }
+    }
+
+    init()
+    
+    return () => {
+      mounted = false
+    }
   }, [])
 
   return (
     <div className="container">
       <h1>Family Tree</h1>
 
-      <AddMember refresh={load} />
+      <AddMember refresh={load}/>
 
       <FamilyTree members={members} />
     </div>
