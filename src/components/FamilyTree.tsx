@@ -1,5 +1,5 @@
 import type { Member } from "../types"
-import { bufferToImage } from "../utils"
+import { bufferToImage, getColor } from "../utils"
 
 export default function FamilyTree({ members }: { members: Member[] }) {
 
@@ -18,12 +18,20 @@ export default function FamilyTree({ members }: { members: Member[] }) {
 
     return (
       <li key={member.id}>
-        <div className="card">
+        <div 
+          className="card" 
+          style={{
+            backgroundColor: getColor(member.father_id ?? member.mother_id ?? undefined)
+          }}
+        >
           {member.photo && (
             <img src={bufferToImage(member.photo)} />
           )}
           <div>{member.name}</div>
-          <small>{member.age}</small>
+          <small>Age: {member.age}</small><br/>
+          <small>Id: {member.id}</small><br/>
+          <small>FID: {member.father_id}</small><br/>
+          <small>MID: {member.mother_id}</small>
         </div>
 
         {kids.length > 0 && (

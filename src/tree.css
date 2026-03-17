@@ -64,6 +64,7 @@ body {
   border-radius: 6px;
   width: 120px;
   margin: auto;
+  word-break: break-all;
 }
 
 .card img {
@@ -72,4 +73,36 @@ body {
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 6px;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  padding: 16px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  margin-bottom: 30px;
+
+}
+.form input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form button {
+  grid-column:  span 2;
+  width: 200px;
+  padding: 10px 16px;
+  border-radius: 6px;
+  border: none;
+  background: #2d6cdf;
+  color: white;
+  cursor: pointer;
+  justify-self: center;
 }

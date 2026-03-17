@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { addMember } from "../db"
 import type { Member } from "../types"
-
+import "../tree.css"
 export default function AddMember({ refresh }: { refresh: () => void }) {
   const [name, setName] = useState("")
   const [age, setAge] = useState<number>(0)
@@ -47,6 +47,7 @@ export default function AddMember({ refresh }: { refresh: () => void }) {
       />
 
       <input
+        min={0}
         type="number"
         placeholder="Age"
         value={age}
@@ -56,6 +57,7 @@ export default function AddMember({ refresh }: { refresh: () => void }) {
       <input type="file" accept="image/*" onChange={handleFile} />
 
       <input
+        min={0}
         type="number"
         placeholder="Father ID"
         value={fatherId ?? ""}
@@ -63,13 +65,15 @@ export default function AddMember({ refresh }: { refresh: () => void }) {
       />
 
       <input
+        min={0}
+        
         type="number"
         placeholder="Mother ID"
         value={motherId ?? ""}
         onChange={(e) => setMotherId(Number(e.target.value))}
       />
+        <button>Add Member</button>
 
-      <button>Add Member</button>
     </form>
   )
 }
